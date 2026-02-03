@@ -15,13 +15,13 @@ const STEPS = [
 
 const EligibilityCheckPage: React.FC = () => {
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-100 via-amber-50 to-orange-400 flex items-center justify-center p-6 font-sans">
-      <div className="w-full max-w-5xl bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-8 md:p-10">
-        <div className="flex items-center justify-between mb-6">
+    <div className="min-h-screen bg-gradient-to-b from-amber-100 via-amber-50 to-orange-400 flex items-center justify-center p-3 sm:p-6 font-sans">
+      <div className="w-full max-w-xs sm:max-w-lg md:max-w-3xl lg:max-w-5xl bg-white/95 backdrop-blur rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-10">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-2 sm:gap-0">
           <div>
             {/* <p className="text-sm text-gray-500">Eligibility Check</p> */}
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-xs sm:text-sm text-gray-600">
             Want to see dashboard?{' '}
             <a href="#" className="text-orange-500 font-semibold">
               Click Here
@@ -29,7 +29,7 @@ const EligibilityCheckPage: React.FC = () => {
           </div>
         </div>
 
-        <h1 className="text-2xl font-bold text-center text-gray-800 mb-8">Check Your Eligibility</h1>
+        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center text-gray-800 mb-6 sm:mb-8">Check Your Eligibility</h1>
         
         <div className="mt-8">
           <EligibilityCheck />
@@ -68,14 +68,14 @@ const ApplicationTracker: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-100 via-amber-50 to-orange-400 flex items-center justify-center p-6 font-sans">
-      <div className="w-full max-w-5xl bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-8 md:p-10">
-        <div className="flex items-center justify-between mb-6">
+    <div className="min-h-screen bg-gradient-to-b from-amber-100 via-amber-50 to-orange-400 flex items-center justify-center p-3 sm:p-6 font-sans">
+      <div className="w-full max-w-xs sm:max-w-lg md:max-w-3xl lg:max-w-5xl bg-white/95 backdrop-blur rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-10">
+        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-2 sm:gap-0">
           <div>
             {/* <p className="text-sm text-gray-500">Sign up</p> */}
             {/* <h1 className="text-3xl font-bold text-gray-900"> your account</h1> */}
           </div>
-          <div className="text-sm text-gray-600">
+          <div className="text-xs sm:text-sm text-gray-600">
             Want to see dashboard?{' '}
             <a href="#" className="text-orange-500 font-semibold">
               Click Here
@@ -85,19 +85,24 @@ const ApplicationTracker: React.FC = () => {
 
         <StepIndicator steps={STEPS} currentStep={currentStep} />
 
-        <div className="mt-8">{renderStep()}</div>
+        <div className="mt-6 sm:mt-8">{renderStep()}</div>
 
-        <div className="flex justify-end mt-10 gap-3">
+        <div className="flex flex-col sm:flex-row justify-between sm:justify-end mt-8 sm:mt-10 gap-3">
           {currentStep > 1 && (
             <button
               onClick={prevStep}
-              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 px-6 rounded-lg transition-colors"
+              className="bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-2 sm:py-2 px-4 sm:px-6 rounded-lg transition-colors w-full sm:w-auto text-sm sm:text-base"
             >
               Back
             </button>
           )}
           <button
             onClick={nextStep}
+            className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 sm:py-2 px-4 sm:px-6 rounded-lg shadow-sm transition-colors w-full sm:w-auto text-sm sm:text-base"
+          >
+            {currentStep === STEPS.length ? 'Finish' : 'Save & Continue'}
+          </button>
+        </div>
             className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg shadow-sm transition-colors"
           >
             {currentStep === STEPS.length ? 'Finish' : 'Save & Continue'}

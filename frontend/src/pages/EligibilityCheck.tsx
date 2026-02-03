@@ -74,7 +74,7 @@ export const EligibilityCheck: React.FC<EligibilityCheckProps> = ({ onNext }) =>
     };
 
     return (
-        <div className="space-y-6">
+        <div className="space-y-4 sm:space-y-6">
             {/* Job Description Field */}
             <div>
                 <TextArea
@@ -82,7 +82,7 @@ export const EligibilityCheck: React.FC<EligibilityCheckProps> = ({ onNext }) =>
                     placeholder="Paste the complete job description here..."
                     value={jobDescription}
                     onChange={(e) => setJobDescription(e.target.value)}
-                    rows={8}
+                    rows={6}
                     required
                     helperText="Copy and paste the full job description from the job posting"
                 />
@@ -105,7 +105,7 @@ export const EligibilityCheck: React.FC<EligibilityCheckProps> = ({ onNext }) =>
                 <Button
                     onClick={handleEligibilityCheck}
                     disabled={!jobDescription.trim() || !resume || isChecking}
-                    className={`font-semibold py-3 px-8 rounded-lg shadow-sm transition-all duration-300 ${getButtonStyle()}`}
+                    className={`font-semibold py-3 px-6 sm:px-8 rounded-lg shadow-sm transition-all duration-300 w-full sm:w-auto text-sm sm:text-base ${getButtonStyle()}`}
                 >
                     {getButtonText()}
                 </Button>
@@ -113,22 +113,22 @@ export const EligibilityCheck: React.FC<EligibilityCheckProps> = ({ onNext }) =>
 
             {/* Result Message */}
             {showResult && (
-                <div className={`mt-6 p-4 rounded-lg text-center transition-all duration-300 ${eligibilityResult === 'eligible'
+                <div className={`mt-4 sm:mt-6 p-4 sm:p-6 rounded-lg text-center transition-all duration-300 ${eligibilityResult === 'eligible'
                         ? 'bg-green-100 border border-green-300'
                         : 'bg-red-100 border border-red-300'
                     }`}>
                     {eligibilityResult === 'eligible' ? (
                         <div className="text-green-800">
-                            <h3 className="font-semibold text-lg mb-2">🎉 Great News!</h3>
-                            <p>You meet the eligibility requirements for this position. Redirecting to application form...</p>
+                            <h3 className="font-semibold text-base sm:text-lg mb-2">🎉 Great News!</h3>
+                            <p className="text-sm sm:text-base">You meet the eligibility requirements for this position. Redirecting to application form...</p>
                         </div>
                     ) : (
                         <div className="text-red-800">
-                            <h3 className="font-semibold text-lg mb-2">❌ Not Eligible</h3>
-                            <p className="mb-3">Based on your resume and job requirements, you may not meet all the criteria for this position.</p>
+                            <h3 className="font-semibold text-base sm:text-lg mb-2">❌ Not Eligible</h3>
+                            <p className="mb-3 text-sm sm:text-base">Based on your resume and job requirements, you may not meet all the criteria for this position.</p>
                             <button
                                 onClick={handleRetry}
-                                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors"
+                                className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-4 rounded-lg transition-colors text-sm sm:text-base"
                             >
                                 Try Again
                             </button>

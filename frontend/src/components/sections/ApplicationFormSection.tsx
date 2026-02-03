@@ -38,9 +38,9 @@ export const ApplicationFormSection: React.FC<
   } = form;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Row 1: Platform and Company Name */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <Select
           {...register('platform')}
           label="Platform"
@@ -60,7 +60,7 @@ export const ApplicationFormSection: React.FC<
       </div>
 
       {/* Row 2: Job Domain and Job Type */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <Input
           {...register('domain')}
           type="text"
@@ -80,7 +80,7 @@ export const ApplicationFormSection: React.FC<
       </div>
 
       {/* Row 2.5: Employment Type */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <Select
           {...register('employmentType')}
           label="Employment Type"
@@ -92,7 +92,7 @@ export const ApplicationFormSection: React.FC<
       </div>
 
       {/* Row 3: Application Date and Job ID */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 sm:gap-6">
         <Input
           {...register('applicationDate')}
           type="date"
