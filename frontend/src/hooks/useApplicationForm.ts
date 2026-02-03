@@ -8,9 +8,21 @@ export const applicationFormSchema = z.object({
     .string()
     .min(1, 'Platform is required')
     .refine((val) => val !== '', 'Please select a platform'),
+  companyName: z
+    .string()
+    .min(1, 'Company name is required')
+    .max(200, 'Company name cannot exceed 200 characters'),
   domain: z
     .string()
     .min(1, 'Job Domain is required'),
+  jobType: z
+    .string()
+    .min(1, 'Job type is required')
+    .refine((val) => val !== '', 'Please select a job type'),
+  employmentType: z
+    .string()
+    .min(1, 'Employment type is required')
+    .refine((val) => val !== '', 'Please select an employment type'),
   applicationDate: z
     .string()
     .min(1, 'Application date is required'),
@@ -38,7 +50,10 @@ export const useApplicationForm = (props?: UseApplicationFormProps) => {
     mode: 'onChange',
     defaultValues: {
       platform: '',
+      companyName: '',
       domain: '',
+      jobType: '',
+      employmentType: '',
       applicationDate: '',
       jobId: '',
       jobUrl: '',

@@ -19,6 +19,17 @@ const platformOptions: SelectOption[] = [
   { value: 'other', label: 'Other' },
 ];
 
+const jobTypeOptions: SelectOption[] = [
+  { value: 'remote', label: 'Remote' },
+  { value: 'hybrid', label: 'Hybrid' },
+  { value: 'onsite', label: 'On-site' },
+];
+
+const employmentTypeOptions: SelectOption[] = [
+  { value: 'fulltime', label: 'Full-time' },
+  { value: 'internship', label: 'Internship' },
+];
+
 export const ApplicationFormSection: React.FC<
   ApplicationFormSectionProps
 > = ({ form }) => {
@@ -44,7 +55,7 @@ export const ApplicationFormSection: React.FC<
 
   return (
     <div className="space-y-6">
-      {/* Row 1: Platform and Domain */}
+      {/* Row 1: Platform and Company Name */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Select
           {...register('platform')}
@@ -55,6 +66,18 @@ export const ApplicationFormSection: React.FC<
           required
         />
         <Input
+          {...register('companyName')}
+          type="text"
+          label="Company Name"
+          placeholder="e.g., Google, Microsoft, Amazon"
+          error={errors.companyName?.message}
+          required
+        />
+      </div>
+
+      {/* Row 2: Job Domain and Job Type */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Input
           {...register('domain')}
           type="text"
           label="Job Domain"
@@ -62,9 +85,29 @@ export const ApplicationFormSection: React.FC<
           error={errors.domain?.message}
           required
         />
+        <Select
+          {...register('jobType')}
+          label="Job Type"
+          placeholder="Select job type"
+          options={jobTypeOptions}
+          error={errors.jobType?.message}
+          required
+        />
       </div>
 
-      {/* Row 2: Application Date and Job ID */}
+      {/* Row 2.5: Employment Type */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <Select
+          {...register('employmentType')}
+          label="Employment Type"
+          placeholder="Select employment type"
+          options={employmentTypeOptions}
+          error={errors.employmentType?.message}
+          required
+        />
+      </div>
+
+      {/* Row 3: Application Date and Job ID */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <Input
           {...register('applicationDate')}
@@ -82,7 +125,7 @@ export const ApplicationFormSection: React.FC<
         />
       </div>
 
-      {/* Row 3: Job URL */}
+      {/* Row 4: Job URL */}
       <Input
         {...register('jobUrl')}
         type="url"
@@ -93,7 +136,7 @@ export const ApplicationFormSection: React.FC<
         helperText="Paste the job link here"
       />
 
-      {/* Row 4: Resume Upload */}
+      {/* Row 5: Resume Upload */}
       <FileUpload
         label="Resume"
         accept=".pdf,.doc,.docx"
