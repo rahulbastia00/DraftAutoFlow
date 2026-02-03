@@ -10,23 +10,17 @@ export const applicationFormSchema = z.object({
     .refine((val) => val !== '', 'Please select a platform'),
   domain: z
     .string()
-    .min(1, 'Domain is required')
-    .refine((val) => val !== '', 'Please select a domain'),
+    .min(1, 'Job Domain is required'),
   applicationDate: z
     .string()
-    .min(1, 'Application date is required')
-    .refine((val) => val !== '', 'Please select an application date'),
-  jobDescription: z
-    .string()
-    .min(10, 'Job description must be at least 10 characters')
-    .max(5000, 'Job description cannot exceed 5000 characters'),
+    .min(1, 'Application date is required'),
   jobId: z
     .string()
-    .min(1, 'Job ID is required')
-    .max(100, 'Job ID cannot exceed 100 characters'),
-  jobLink: z
+    .max(100, 'Job ID cannot exceed 100 characters')
+    .optional(),
+  jobUrl: z
     .string()
-    .min(1, 'Job link is required')
+    .min(1, 'Job URL is required')
     .url('Please enter a valid URL'),
   resume: z.instanceof(File).optional().nullable(),
 });
@@ -46,9 +40,8 @@ export const useApplicationForm = (props?: UseApplicationFormProps) => {
       platform: '',
       domain: '',
       applicationDate: '',
-      jobDescription: '',
       jobId: '',
-      jobLink: '',
+      jobUrl: '',
       resume: null,
     },
     ...(props ?? {}),

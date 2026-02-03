@@ -6,9 +6,9 @@ import { StepIndicator } from './components/ui/StepIndicator'
 import './App.css'
 
 const STEPS = [
-  { number: 1, title: 'Basic Details' },
-  { number: 2, title: 'Contact Details' },
-  { number: 3, title: 'Verification' },
+  { number: 1, title: 'Job Details' },
+  { number: 2, title: 'Additional Info' },
+  { number: 3, title: 'Review & Submit' },
 ];
 
 const App: React.FC = () => {
@@ -29,13 +29,13 @@ const App: React.FC = () => {
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <StepOne onNext={nextStep} />
+        return <StepOne />
       case 2:
-        return <StepTwo onBack={prevStep} onNext={nextStep} />
+        return <StepTwo />
       case 3:
-        return <StepThree onBack={prevStep} />
+        return <StepThree />
       default:
-        return <StepOne onNext={nextStep} />
+        return <StepOne />
     }
   }
 
@@ -44,13 +44,13 @@ const App: React.FC = () => {
       <div className="w-full max-w-5xl bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-8 md:p-10">
         <div className="flex items-center justify-between mb-6">
           <div>
-            <p className="text-sm text-gray-500">Sign up</p>
-            <h1 className="text-3xl font-bold text-gray-900">Create your account</h1>
+            {/* <p className="text-sm text-gray-500">Sign up</p> */}
+            {/* <h1 className="text-3xl font-bold text-gray-900"> your account</h1> */}
           </div>
           <div className="text-sm text-gray-600">
-            Already a Member?{' '}
+            Whant to see dashboard?{' '}
             <a href="#" className="text-orange-500 font-semibold">
-              Sign In
+              Click Here
             </a>
           </div>
         </div>

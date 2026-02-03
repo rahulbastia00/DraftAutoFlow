@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 import { Input } from '../ui/Input';
 import { Select, type SelectOption } from '../ui/Select';
-import { TextArea } from '../ui/TextArea';
 import { FileUpload } from '../ui/FileUpload';
 import type { ApplicationFormData } from '../../hooks/useApplicationForm';
 
@@ -17,16 +16,6 @@ const platformOptions: SelectOption[] = [
   { value: 'wellfound', label: 'WellFound' },
   { value: 'indeed', label: 'Indeed' },
   { value: 'company_website', label: 'Company Website' },
-  { value: 'other', label: 'Other' },
-];
-
-const domainOptions: SelectOption[] = [
-  { value: 'data_science', label: 'Data Science' },
-  { value: 'ai_ml', label: 'AI / ML' },
-  { value: 'robotics', label: 'Robotics' },
-  { value: 'web_development', label: 'Web Development' },
-  { value: 'devops', label: 'DevOps' },
-  { value: 'software_engineering', label: 'Software Engineering' },
   { value: 'other', label: 'Other' },
 ];
 
@@ -65,11 +54,11 @@ export const ApplicationFormSection: React.FC<
           error={errors.platform?.message}
           required
         />
-        <Select
+        <Input
           {...register('domain')}
-          label="Domain"
-          placeholder="Select a domain"
-          options={domainOptions}
+          type="text"
+          label="Job Domain"
+          placeholder="e.g., Data Science, AI Intern, ML Engineer"
           error={errors.domain?.message}
           required
         />
@@ -88,34 +77,23 @@ export const ApplicationFormSection: React.FC<
           {...register('jobId')}
           type="text"
           label="Job ID"
-          placeholder="Enter job ID"
+          placeholder="Optional identifier from job posting"
           error={errors.jobId?.message}
-          required
         />
       </div>
 
-      {/* Row 3: Job Link */}
+      {/* Row 3: Job URL */}
       <Input
-        {...register('jobLink')}
+        {...register('jobUrl')}
         type="url"
-        label="Job Link"
-        placeholder="https://example.com/job-posting"
-        error={errors.jobLink?.message}
+        label="Job URL"
+        placeholder="https://linkedin.com/jobs/view/..."
+        error={errors.jobUrl?.message}
         required
         helperText="Paste the job link here"
       />
 
-      {/* Row 4: Job Description */}
-      <TextArea
-        {...register('jobDescription')}
-        label="Job Description"
-        placeholder="Paste the complete job description here..."
-        rows={4}
-        error={errors.jobDescription?.message}
-        required
-      />
-
-      {/* Row 5: Resume Upload */}
+      {/* Row 4: Resume Upload */}
       <FileUpload
         label="Resume"
         accept=".pdf,.doc,.docx"
