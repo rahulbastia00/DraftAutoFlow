@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import type { UseFormReturn } from 'react-hook-form';
 import { Input } from '../ui/Input';
 import { Select, type SelectOption } from '../ui/Select';
-import { FileUpload } from '../ui/FileUpload';
 import type { ApplicationFormData } from '../../hooks/useApplicationForm';
 
 interface ApplicationFormSectionProps {
@@ -36,22 +35,7 @@ export const ApplicationFormSection: React.FC<
   const {
     register,
     formState: { errors },
-    setValue,
   } = form;
-
-  const [resumeFile, setResumeFile] = useState<File | null>(null);
-
-  const handleResumeChange = (file: File | null) => {
-    setResumeFile(file);
-    if (file) {
-      setValue('resume', file, { shouldValidate: true });
-    }
-  };
-
-  const handleResumeRemove = () => {
-    setResumeFile(null);
-    setValue('resume', null);
-  };
 
   return (
     <div className="space-y-6">
@@ -134,17 +118,6 @@ export const ApplicationFormSection: React.FC<
         error={errors.jobUrl?.message}
         required
         helperText="Paste the job link here"
-      />
-
-      {/* Row 5: Resume Upload */}
-      <FileUpload
-        label="Resume"
-        accept=".pdf,.doc,.docx"
-        onChange={handleResumeChange}
-        selectedFile={resumeFile}
-        onRemove={handleResumeRemove}
-        error={errors.resume?.message}
-        helperText="Upload your resume in PDF or DOC format"
       />
     </div>
   );

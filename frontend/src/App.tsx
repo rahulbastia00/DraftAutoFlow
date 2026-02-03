@@ -1,17 +1,45 @@
 import React, { useState } from 'react'
+import { Routes, Route, Navigate } from 'react-router-dom'
 import { StepOne } from './pages/StepOne'
 import StepTwo from './pages/StepTwo'
 import StepThree from './pages/StepThree'
+import { EligibilityCheck } from './pages/EligibilityCheck'
 import { StepIndicator } from './components/ui/StepIndicator'
 import './App.css'
 
 const STEPS = [
-  { number: 1, title: 'Job Details' },
-  { number: 2, title: 'Additional Info' },
+  { number: 1, title: 'Eligibility Check' },
+  { number: 2, title: 'Job Details' },
   { number: 3, title: 'Review & Submit' },
 ];
 
-const App: React.FC = () => {
+const EligibilityCheckPage: React.FC = () => {
+  return (
+    <div className="min-h-screen bg-gradient-to-b from-amber-100 via-amber-50 to-orange-400 flex items-center justify-center p-6 font-sans">
+      <div className="w-full max-w-5xl bg-white/95 backdrop-blur rounded-3xl shadow-2xl p-8 md:p-10">
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            {/* <p className="text-sm text-gray-500">Eligibility Check</p> */}
+          </div>
+          <div className="text-sm text-gray-600">
+            Want to see dashboard?{' '}
+            <a href="#" className="text-orange-500 font-semibold">
+              Click Here
+            </a>
+          </div>
+        </div>
+
+        <h1 className="text-2xl font-bold text-center text-gray-800 mb-8">Check Your Eligibility</h1>
+        
+        <div className="mt-8">
+          <EligibilityCheck />
+        </div>
+      </div>
+    </div>
+  )
+}
+
+const ApplicationTracker: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1)
 
   const nextStep = () => {
@@ -29,13 +57,13 @@ const App: React.FC = () => {
   const renderStep = () => {
     switch (currentStep) {
       case 1:
-        return <StepOne />
+        return <EligibilityCheck onNext={nextStep} />
       case 2:
-        return <StepTwo />
+        return <StepOne />
       case 3:
         return <StepThree />
       default:
-        return <StepOne />
+        return <EligibilityCheck onNext={nextStep} />
     }
   }
 
@@ -48,7 +76,7 @@ const App: React.FC = () => {
             {/* <h1 className="text-3xl font-bold text-gray-900"> your account</h1> */}
           </div>
           <div className="text-sm text-gray-600">
-            Whant to see dashboard?{' '}
+            Want to see dashboard?{' '}
             <a href="#" className="text-orange-500 font-semibold">
               Click Here
             </a>
@@ -77,6 +105,15 @@ const App: React.FC = () => {
         </div>
       </div>
     </div>
+  )
+}
+
+const App: React.FC = () => {
+  return (
+    <Routes>
+      <Route path="/application-track" element={<ApplicationTracker />} />
+      <Route path="/" element={<Navigate to="/application-track" replace />} />
+    </Routes>
   )
 }
 
