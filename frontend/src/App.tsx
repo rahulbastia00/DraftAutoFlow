@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { Routes, Route, Navigate } from 'react-router-dom'
 import { StepOne } from './pages/StepOne'
-import StepTwo from './pages/StepTwo'
+// import StepTwo from './pages/StepTwo'
 import StepThree from './pages/StepThree'
 import { EligibilityCheck } from './pages/EligibilityCheck'
 import { StepIndicator } from './components/ui/StepIndicator'
@@ -12,32 +12,6 @@ const STEPS = [
   { number: 2, title: 'Job Details' },
   { number: 3, title: 'Review & Submit' },
 ];
-
-const EligibilityCheckPage: React.FC = () => {
-  return (
-    <div className="min-h-screen bg-gradient-to-b from-amber-100 via-amber-50 to-orange-400 flex items-center justify-center p-3 sm:p-6 font-sans">
-      <div className="w-full max-w-xs sm:max-w-lg md:max-w-3xl lg:max-w-5xl bg-white/95 backdrop-blur rounded-2xl sm:rounded-3xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-10">
-        <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 sm:mb-6 gap-2 sm:gap-0">
-          <div>
-            {/* <p className="text-sm text-gray-500">Eligibility Check</p> */}
-          </div>
-          <div className="text-xs sm:text-sm text-gray-600">
-            Want to see dashboard?{' '}
-            <a href="#" className="text-orange-500 font-semibold">
-              Click Here
-            </a>
-          </div>
-        </div>
-
-        <h1 className="text-lg sm:text-xl md:text-2xl font-bold text-center text-gray-800 mb-6 sm:mb-8">Check Your Eligibility</h1>
-        
-        <div className="mt-8">
-          <EligibilityCheck />
-        </div>
-      </div>
-    </div>
-  )
-}
 
 const ApplicationTracker: React.FC = () => {
   const [currentStep, setCurrentStep] = useState(1)
@@ -99,11 +73,6 @@ const ApplicationTracker: React.FC = () => {
           <button
             onClick={nextStep}
             className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 sm:py-2 px-4 sm:px-6 rounded-lg shadow-sm transition-colors w-full sm:w-auto text-sm sm:text-base"
-          >
-            {currentStep === STEPS.length ? 'Finish' : 'Save & Continue'}
-          </button>
-        </div>
-            className="bg-orange-500 hover:bg-orange-600 text-white font-semibold py-2 px-6 rounded-lg shadow-sm transition-colors"
           >
             {currentStep === STEPS.length ? 'Finish' : 'Save & Continue'}
           </button>
