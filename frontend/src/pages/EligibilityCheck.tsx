@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { TextArea } from '../components/ui/TextArea';
 import { FileUpload } from '../components/ui/FileUpload';
 import { Button } from '../components/ui/Button';
+import { WebhookService } from '../services/webhookService';
 
 interface EligibilityCheckProps {
     onNext?: () => void;
@@ -31,7 +32,16 @@ export const EligibilityCheck: React.FC<EligibilityCheckProps> = ({ onNext }) =>
         setIsChecking(true);
         setShowResult(false);
 
-        // Simulate API call for eligibility check
+        // Send data to N8n webhook
+        console.log('🔗 Calling N8n webhook for connectivity test...');
+        const webhookResult = await WebhookService.submitToN8n({
+            jobDescription,
+            resume,
+        });
+
+        console.log('📡 Webhook result:', webhookResult);
+
+        // Continue with existing eligibility check simulation
         await new Promise(resolve => setTimeout(resolve, 2000));
 
         // Mock eligibility determination (70% chance of being eligible)
